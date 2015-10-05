@@ -1,27 +1,16 @@
 <!DOCTYPE html>
 <!-- saved from url=(0059)https://courses.engr.illinois.edu/cs418/HelloAnimation.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>StawPoll</title>
+<title>StrawPoll</title>
 <meta charset="utf-8"> 
 <script> 
 var currpoll;
 
-function httpGetAsync(theUrl, callback)
-{
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() { 
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText);
-    }
-    xmlHttp.open("GET", theUrl, true); // true for asynchronous 
-    xmlHttp.send(null);
-}
-
 function refresh(){
     var idk;
-    var poll = httpGetAsync("https://strawpoll.me/api/v2/polls/" + currpoll, idk);
-    document.getElementById("demo").innerHTML = idk;
-    
+    window.open("https://strawpoll.me/" + currpoll);
+    document.getElementsByName("fname")[0].value = currpoll;
+        
     //var nameIdx = poll.search("title:");
 }
 
@@ -73,7 +62,7 @@ function startup(){
    
 <body onload="startup();">
   <form action="demo_form.asp">
-  Current staw poll (approx): <input type="text" name="fname"><br>
+  Current straw poll (approx): <input type="text" name="fname"><br>
   </form>
   <p id="demo"></p>
 
