@@ -4,7 +4,7 @@ function terrainFromIteration(n, minX,maxX,minY,maxY, vertexArray, faceArray,nor
     var heightArray= [];
     for(var i = 0; i < (n+1)*(n+1); i++)
         heightArray.push(0);
-    console.log(heightArray);
+    //console.log(heightArray);
     generateHeightMap(1, n+1, 0, n, 0, n, heightArray);
     
     var deltaX=(maxX-minX)/n;
@@ -15,10 +15,14 @@ function terrainFromIteration(n, minX,maxX,minY,maxY, vertexArray, faceArray,nor
            vertexArray.push(minX+deltaX*j);
            vertexArray.push(minY+deltaY*i);
            vertexArray.push(heightArray[j*(n+1)+i]);
+           var normal = computeVertexNormals(n, minX+deltaX*j, minY+deltaY*i, deltaX, deltaY, heightArray, i, j);
            
-           normalArray.push(0);
-           normalArray.push(0);
-           normalArray.push(1);
+           normalArray.push(vec3.dot(normal, [1.0, 0.0, 0.0]));
+           normalArray.push(vec3.dot(normal, [1.0, 1.0, 0.0]));
+           normalArray.push(vec3.dot(normal, [0.0, 0.0, 1.0]));
+           //normalArray.push(0);
+           //normalArray.push(0);
+           //normalArray.push(1);
        }
 
     var numT=0;
@@ -59,9 +63,9 @@ function generateLinesFromIndexedTriangles(faceArray,lineArray)
 
 function generateHeightMap(n, size, minX, maxX, minY, maxY, heightArray)
 {
-    var randrange = .1;
+    var randrange = .5;
     var randcenter = 0;
-    console.log(heightArray);
+    //console.log(heightArray);
     if(minX+1 == maxX)
         return;
     var midX = (minX + maxX)/2;
@@ -131,34 +135,127 @@ function generateHeightMap(n, size, minX, maxX, minY, maxY, heightArray)
     generateHeightMap(n+1, size, midX, maxX, midY, maxY, heightArray);   //bottomright
     
 }
-/*
-function computeNormal(size, x, y, deltax, deltay, heightArray, i, j)
+
+function computeVertexNormals(size, x, y, deltax, deltay, heightArray, i, j)          
 {
     var normalsum = vec3.create();
+    var normal = vec3.create();        
+    
+    if(i != 0 && j != 0)
+    {
+    var p0 = vec3.fromValues(x-deltax, y, heightArray[j*size+(i-1)]);            //1    
+    var p1 = vec3.fromValues(x, y, heightArray[j*size+i]);       
+    var p2 = vec3.fromValues(x-deltax, y-deltay, heightArray[(j-1)*size+(i-1)]);
+       
+    normal = normalFromVertices(p0, p1, p2);    
+    vec3.add(normalsum, normalsum, normal);
+    
+    p0 = vec3.fromValues(x-deltax, y-deltay, heightArray[(j-1)*size+(i-1)]);     //2
+    p1 = vec3.fromValues(x, y, heightArray[j*size+i]);
+    p2 = vec3.fromValues(x-deltax, y, heightArray[j*size+(i-1)]);       
+    normal = normalFromVertices(p0, p1, p2);  
+    vec3.add(normalsum, normalsum, normal);         
+    }
+    
+    if(i != size-1 && j != 0)
+    {
+    p0 = vec3.fromValues(x, y, heightArray[j*size+i]);                           //3
+    p1 = vec3.fromValues(x+deltax, y, heightArray[j*size+(i+1)]);
+    p2 = vec3.fromValues(x, y-deltay, heightArray[(j-1)*size+i]);       
+    normal = normalFromVertices(p0, p1, p2);  
+    vec3.add(normalsum, normalsum, normal);  
+    }
+    
+    if(i != 0 && j != size-1)
+    {
+    p0 = vec3.fromValues(x-deltax, y, heightArray[j*size+(i-1)]);                //4
+    p1 = vec3.fromValues(x, y+deltay, heightArray[(j+1)*size+i]);
+    p2 = vec3.fromValues(x, y, heightArray[j*size+i]);       
+    normal = normalFromVertices(p0, p1, p2);  
+    vec3.add(normalsum, normalsum, normal);  
+    }
+    
+    if(i != size-1 && j != size-1)
+    {
+    p0 = vec3.fromValues(x, y, heightArray[j*size+i]);                           //5
+    p1 = vec3.fromValues(x, y+deltay, heightArray[(j+1)*size+i]);                
+    p2 = vec3.fromValues(x+deltax, y+deltay, heightArray[(j+1)*size+(i-1)]);   
+    normal = normalFromVertices(p0, p1, p2);  
+    vec3.add(normalsum, normalsum, normal);  
+    
+    p0 = vec3.fromValues(x, y, heightArray[j*size+i]);                           //6
+    p2 = vec3.fromValues(x+deltax, y+deltay, heightArray[(j+1)*size+(i-1)]);   
+    p1 = vec3.fromValues(x+deltax, y, heightArray[j*size+i]);   
+    normal = normalFromVertices(p0, p1, p2);  
+    vec3.add(normalsum, normalsum, normal);  
+    }
+
+    vec3.normalize(normalsum, normalsum);
+    
+    return normalsum;
+}
+
+function normalFromVertices(p0, p1, p2) //counterclockwise vertex naming
+{
+    
     var p2p0 = vec3.create();
     var p1p0 = vec3.create();
     var normal = vec3.create();
-    
-    var p0 = vec3.fromValues(x-deltax, y, heightArray[j*size+(i-1)]);
-    var p1 = vec3.fromValues(x, y, heightArray[j*size+i];
-    var p3 = vec3.fromValues(x-deltax, y-deltay, heightArray[(j-1)*size+(i-1)]);
     vec3.subtract(p2p0, p2, p0);
     vec3.subtract(p1p0, p1, p0);
     vec3.cross(normal, p2p0, p1p0);
     vec3.normalize(normal, normal);
-    vec3.add(normalsum, normalsum, normal);
-    
-    p0 = vec3.fromValues(x-deltax, y, heightArray[j*size+(i-1)]);
-    p1 = vec3.fromValues(x, y, heightArray[j*size+i];
-    p3 = vec3.fromValues(x-deltax, y-deltay, heightArray[(j-1)*size+(i-1)]);
-    vec3.subtract(p2p0, p2, p0);
-    vec3.subtract(p1p0, p1, p0);
-    vec3.cross(normal, p2p0, p1p0);
-    vec3.normalize(normal, normal);
-    vec3.add(normalsum, normalsum, normal);
     
     
-    
-    
+    return normal;    
 }
+
+
+
+
+
+
+
+
+/*
+
+    
+    
+     -----------------------------------
+    | -               | -               |
+    |   -         2   |   -             |
+    |     -           |     -           |
+    |       -         |       -         |
+    |         -       |         -       |
+    |   1       -     |   3       -     |
+    |             -   |             -   |
+     -----------------------------------
+    | -               | -               |
+    |   -             |   -      6      |
+    |     -     4     |     -           |
+    |       -         |       -         |
+    |         -       |   5     -       |
+    |           -     |           -     |
+    |             -   |             -   |
+     ------------------------------------
+
+
+
 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

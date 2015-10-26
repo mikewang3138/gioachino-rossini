@@ -6,7 +6,7 @@ var vertexPositionBuffer;
 var keyscurrentlypressed = {};
 var eyeptx = 0;
 var eyepty = 0;
-var eyeptz = 0.2;
+var eyeptz = 0.7;
 
 // Create a place to store terrain geometry
 var tVertexPositionBuffer;
@@ -47,7 +47,7 @@ function setupTerrainBuffers() {
     var eTerrain=[];
     var gridN=Math.pow(2, 5);
     
-    var numT = terrainFromIteration(gridN, -2,2,-2,2, vTerrain, fTerrain, nTerrain);
+    var numT = terrainFromIteration(gridN, -10,10,-10,10, vTerrain, fTerrain, nTerrain);
     console.log("Generated ", numT, " triangles"); 
     tVertexPositionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, tVertexPositionBuffer);      
