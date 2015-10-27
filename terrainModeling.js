@@ -145,8 +145,7 @@ function computeVertexNormals(size, x, y, deltax, deltay, heightArray, i, j)
     {
     var p0 = vec3.fromValues(x-deltax, y, heightArray[j*size+(i-1)]);            //1    
     var p1 = vec3.fromValues(x, y, heightArray[j*size+i]);       
-    var p2 = vec3.fromValues(x-deltax, y-deltay, heightArray[(j-1)*size+(i-1)]);
-       
+    var p2 = vec3.fromValues(x-deltax, y-deltay, heightArray[(j-1)*size+(i-1)]);   
     normal = normalFromVertices(p0, p1, p2);    
     vec3.add(normalsum, normalsum, normal);
     
@@ -205,7 +204,6 @@ function normalFromVertices(p0, p1, p2) //counterclockwise vertex naming
     vec3.subtract(p1p0, p1, p0);
     vec3.cross(normal, p2p0, p1p0);
     vec3.normalize(normal, normal);
-    
     
     return normal;    
 }

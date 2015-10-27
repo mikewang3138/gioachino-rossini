@@ -4,9 +4,20 @@ var canvas;
 var shaderProgram;
 var vertexPositionBuffer;
 var keyscurrentlypressed = {};
-var eyeptx = 0;
-var eyepty = 0;
-var eyeptz = 0.7;
+var eyeptx = -12;
+var eyepty = -12;
+var eyeptz = 10;
+var lightx = 0;
+var lighty = 0; 
+var lightz = 0;
+var roll = 0;
+var pitch = 0;
+var rollquat = quat.create();
+var right = vec3.create();
+var pitchquat = quat.create();
+
+
+
 
 // Create a place to store terrain geometry
 var tVertexPositionBuffer;
@@ -22,9 +33,11 @@ var tIndexEdgeBuffer;
 
 // View parameters
 var eyePt = vec3.fromValues(eyeptx, eyepty, eyeptz);
-var viewDir = vec3.fromValues(0.0,1.0,0.0);
+var viewDir = vec3.fromValues(1.0,1.0,-1.0);
 var up = vec3.fromValues(0.0,0.0,1.0);
 var viewPt = vec3.fromValues(0.0,0.0,0.0);
+var velocity = vec3.create();
+
 
 // Create the normal
 var nMatrix = mat3.create();
@@ -310,7 +323,7 @@ function draw() {
       drawTerrainEdges();
     }
     mvPopMatrix();
-  
+      
 }
 
 function handlekeydown(event){
@@ -321,26 +334,61 @@ function handlekeydown(event){
 
 function handlekeyup(event){
   keyscurrentlypressed[event.keyCode] = false;
-  //console.log(keypressed);
+  console.log(event.keyCode);
     
 }
 
 //----------------------------------------------------------------------------------
 function animate() {
-    if(keyscurrentlypressed[40])
-        eyeptz -= .01;
-    if(keyscurrentlypressed[38])
-        eyeptz += .01;
     if(keyscurrentlypressed[83])
-        eyepty -= .01;
+    {
+        pitch = -1;        
+        vec3.cross(right, up, viewDir);
+        quat.setAxisAngle(pitchquat, right, degToRad(pitch));
+        quat.normalize(pitchquat, pitchquat);
+        vec3.transformQuat(viewDir, viewDir, pitchquat);
+        pitch = 0;
+       
+    }
     if(keyscurrentlypressed[87])
-        eyepty += .01;
+    {
+        
+        pitch = 1;        
+        vec3.cross(right, up, viewDir);
+        quat.setAxisAngle(pitchquat, right, degToRad(pitch));
+        quat.normalize(pitchquat, pitchquat);
+        vec3.transformQuat(viewDir, viewDir, pitchquat);
+        pitch = 0;
+    }
     if(keyscurrentlypressed[65])
-        eyeptx -= .01;
+    {
+        roll = 1;
+        quat.setAxisAngle(rollquat, viewDir, degToRad(roll));
+        quat.normalize(rollquat, rollquat);
+        console.log(up);
+        vec3.transformQuat(up, up, rollquat);
+        console.log(up);
+        roll = 0;
+    }
     if(keyscurrentlypressed[68])
-        eyeptx += .01;
+    {
+        
+        roll = -1;
+        quat.setAxisAngle(rollquat, viewDir, degToRad(roll));
+        quat.normalize(rollquat, rollquat);
+        console.log(up);
+        vec3.transformQuat(up, up, rollquat);
+        console.log(up);
+        roll = 0;
+    }
     
-    eyePt = vec3.fromValues(eyeptx, eyepty, eyeptz);
+    console.log(eyePt);
+    console.log(velocity);
+    vec3.scale(velocity, viewDir, .01);
+    vec3.add(eyePt, eyePt, velocity);
+    
+    
+    
 }
 
 //----------------------------------------------------------------------------------
