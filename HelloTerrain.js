@@ -6,7 +6,7 @@ var vertexPositionBuffer;
 var keyscurrentlypressed = {};
 var eyeptx = -12;
 var eyepty = -12;
-var eyeptz = 10;
+var eyeptz = 2;
 var lightx = 0;
 var lighty = 0; 
 var lightz = 0;
@@ -33,7 +33,7 @@ var tIndexEdgeBuffer;
 
 // View parameters
 var eyePt = vec3.fromValues(eyeptx, eyepty, eyeptz);
-var viewDir = vec3.fromValues(1.0,1.0,-1.0);
+var viewDir = vec3.fromValues(1.0,1.0,0.0);
 var up = vec3.fromValues(0.0,0.0,1.0);
 var viewPt = vec3.fromValues(0.0,0.0,0.0);
 var velocity = vec3.create();
@@ -342,48 +342,52 @@ function handlekeyup(event){
 function animate() {
     if(keyscurrentlypressed[83])
     {
-        pitch = -1;        
-        vec3.cross(right, up, viewDir);
+        pitch = 0.8;      
+        console.log("viewdir: " + viewDir);
+        console.log("up: " + up);
+        console.log("right: " + right);
+        vec3.cross(right, viewDir, up);
         quat.setAxisAngle(pitchquat, right, degToRad(pitch));
         quat.normalize(pitchquat, pitchquat);
         vec3.transformQuat(viewDir, viewDir, pitchquat);
+        vec3.transformQuat(up, up, pitchquat);
         pitch = 0;
        
     }
     if(keyscurrentlypressed[87])
     {
         
-        pitch = 1;        
-        vec3.cross(right, up, viewDir);
+        pitch = -0.8;        
+        console.log("viewdir: " + viewDir);
+        console.log("up: " + up);
+        console.log("right: " + right);
+        vec3.cross(right, viewDir, up);
         quat.setAxisAngle(pitchquat, right, degToRad(pitch));
         quat.normalize(pitchquat, pitchquat);
         vec3.transformQuat(viewDir, viewDir, pitchquat);
+        vec3.transformQuat(up, up, pitchquat);
         pitch = 0;
     }
     if(keyscurrentlypressed[65])
     {
-        roll = 1;
+        roll = -0.8;
         quat.setAxisAngle(rollquat, viewDir, degToRad(roll));
         quat.normalize(rollquat, rollquat);
-        console.log(up);
         vec3.transformQuat(up, up, rollquat);
-        console.log(up);
         roll = 0;
     }
     if(keyscurrentlypressed[68])
     {
         
-        roll = -1;
+        roll = 0.8;
         quat.setAxisAngle(rollquat, viewDir, degToRad(roll));
         quat.normalize(rollquat, rollquat);
-        console.log(up);
         vec3.transformQuat(up, up, rollquat);
-        console.log(up);
         roll = 0;
     }
     
-    console.log(eyePt);
-    console.log(velocity);
+    //console.log(eyePt);
+    //console.log(velocity);
     vec3.scale(velocity, viewDir, .01);
     vec3.add(eyePt, eyePt, velocity);
     
