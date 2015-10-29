@@ -63,7 +63,7 @@ function generateLinesFromIndexedTriangles(faceArray,lineArray)
 
 function generateHeightMap(n, size, minX, maxX, minY, maxY, heightArray)
 {
-    var randrange = .5;
+    var randrange = 1;
     var randcenter = 0;
     //console.log(heightArray);
     if(minX+1 == maxX)

@@ -17,7 +17,11 @@ var right = vec3.create();
 var pitchquat = quat.create();
 
 
+// Create a place to store sphere geometry
+var sphereVertexPositionBuffer;
 
+//Create a place to store normals for shading
+var sphereVertexNormalBuffer;
 
 // Create a place to store terrain geometry
 var tVertexPositionBuffer;
@@ -49,6 +53,44 @@ var mvMatrix = mat4.create();
 var pMatrix = mat4.create();
 
 var mvMatrixStack = [];
+
+function setupSphereBuffers() {
+    
+    var sphereSoup=[];
+    var sphereNormals=[];
+    var numT=sphereFromSubdivision(6,sphereSoup,sphereNormals);
+    console.log("Generated ", numT, " triangles"); 
+    sphereVertexPositionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, sphereVertexPositionBuffer);      
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(sphereSoup), gl.STATIC_DRAW);
+    sphereVertexPositionBuffer.itemSize = 3;
+    sphereVertexPositionBuffer.numItems = numT*3;
+    console.log(sphereSoup.length/9);
+    
+    // Specify normals to be able to do lighting calculations
+    sphereVertexNormalBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, sphereVertexNormalBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(sphereNormals),
+                  gl.STATIC_DRAW);
+    sphereVertexNormalBuffer.itemSize = 3;
+    sphereVertexNormalBuffer.numItems = numT*3;
+    
+    console.log("Normals ", sphereNormals.length/3);     
+}
+
+//-------------------------------------------------------------------------
+function drawSphere(){
+ gl.bindBuffer(gl.ARRAY_BUFFER, sphereVertexPositionBuffer);
+ gl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, sphereVertexPositionBuffer.itemSize, 
+                         gl.FLOAT, false, 0, 0);
+
+ // Bind normal buffer
+ gl.bindBuffer(gl.ARRAY_BUFFER, sphereVertexNormalBuffer);
+ gl.vertexAttribPointer(shaderProgram.vertexNormalAttribute, 
+                           sphereVertexNormalBuffer.itemSize,
+                           gl.FLOAT, false, 0, 0);
+ gl.drawArrays(gl.TRIANGLES, 0, sphereVertexPositionBuffer.numItems);      
+}
 
 
 //-------------------------------------------------------------------------
@@ -282,6 +324,7 @@ function uploadLightsToShader(loc,a,d,s) {
 //----------------------------------------------------------------------------------
 function setupBuffers() {
     setupTerrainBuffers();
+    setupSphereBuffers();  
 }
 
 //----------------------------------------------------------------------------------
@@ -307,21 +350,17 @@ function draw() {
     //mat4.rotateZ(mvMatrix, mvMatrix, degToRad(25));     
     setMatrixUniforms();
     
-    if ((document.getElementById("polygon").checked) || (document.getElementById("wirepoly").checked))
-    {
-      uploadLightsToShader([0,1,1],[0.0,0.0,0.0],[0.839,0.337,0.24],[0.0,0.0,0.0]);
-      drawTerrain();
-    }
-    
-    if(document.getElementById("wirepoly").checked){
-      uploadLightsToShader([0,1,1],[0.0,0.0,0.0],[0.0,0.0,0.0],[0.0,0.0,0.0]);
-      drawTerrainEdges();
-    }
-
-    if(document.getElementById("wireframe").checked){
-      uploadLightsToShader([0,1,1],[1.0,1.0,1.0],[0.0,0.0,0.0],[0.0,0.0,0.0]);
-      drawTerrainEdges();
-    }
+    uploadLightsToShader([0,0,10],[0.0,0.0,0.0],[0.839,0.337,0.24],[0.0,0.0,0.0]);
+    drawTerrain();
+    mvPopMatrix();
+    mvPushMatrix();
+    vec3.add(transformVec, eyePt, [0, 0, 10]);
+    mat4.translate(mvMatrix, mvMatrix,transformVec);
+    vec3.set(transformVec,.5,.5,.5);
+    mat4.scale(mvMatrix, mvMatrix,transformVec);
+    uploadLightsToShader([0,0,0],[0.0,0.0,0.0],[0.9,0.9,0.0],[0.1,0.1,0.0]);
+    setMatrixUniforms();
+    drawSphere();
     mvPopMatrix();
       
 }
@@ -340,12 +379,9 @@ function handlekeyup(event){
 
 //----------------------------------------------------------------------------------
 function animate() {
-    if(keyscurrentlypressed[83])
+    if(keyscurrentlypressed[83] || keyscurrentlypressed[40])
     {
-        pitch = 0.8;      
-        console.log("viewdir: " + viewDir);
-        console.log("up: " + up);
-        console.log("right: " + right);
+        pitch = 0.6;      
         vec3.cross(right, viewDir, up);
         quat.setAxisAngle(pitchquat, right, degToRad(pitch));
         quat.normalize(pitchquat, pitchquat);
@@ -354,13 +390,10 @@ function animate() {
         pitch = 0;
        
     }
-    if(keyscurrentlypressed[87])
+    if(keyscurrentlypressed[87] || keyscurrentlypressed[38])
     {
         
-        pitch = -0.8;        
-        console.log("viewdir: " + viewDir);
-        console.log("up: " + up);
-        console.log("right: " + right);
+        pitch = -0.6;    
         vec3.cross(right, viewDir, up);
         quat.setAxisAngle(pitchquat, right, degToRad(pitch));
         quat.normalize(pitchquat, pitchquat);
@@ -368,7 +401,7 @@ function animate() {
         vec3.transformQuat(up, up, pitchquat);
         pitch = 0;
     }
-    if(keyscurrentlypressed[65])
+    if(keyscurrentlypressed[65] || keyscurrentlypressed[37])
     {
         roll = -0.8;
         quat.setAxisAngle(rollquat, viewDir, degToRad(roll));
@@ -376,7 +409,7 @@ function animate() {
         vec3.transformQuat(up, up, rollquat);
         roll = 0;
     }
-    if(keyscurrentlypressed[68])
+    if(keyscurrentlypressed[68] || keyscurrentlypressed[39])
     {
         
         roll = 0.8;
