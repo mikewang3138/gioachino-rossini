@@ -353,6 +353,7 @@ function draw() {
     uploadLightsToShader([0,0,10],[0.0,0.0,0.0],[0.839,0.337,0.24],[0.0,0.0,0.0]);
     drawTerrain();
     mvPopMatrix();
+    // for refernce, draw a sun 10 units directly over the plane. this does not           reflect the actual light source, it is just for aestheics and reference
     mvPushMatrix();
     vec3.add(transformVec, eyePt, [0, 0, 10]);
     mat4.translate(mvMatrix, mvMatrix,transformVec);
@@ -421,8 +422,11 @@ function animate() {
     
     //console.log(eyePt);
     //console.log(velocity);
-    vec3.scale(velocity, viewDir, .01);
-    vec3.add(eyePt, eyePt, velocity);
+    if(!keyscurrentlypressed[32])
+    {
+        vec3.scale(velocity, viewDir, .01);
+        vec3.add(eyePt, eyePt, velocity);
+    }
     
     
     

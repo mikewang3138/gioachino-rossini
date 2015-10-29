@@ -15,6 +15,7 @@ function terrainFromIteration(n, minX,maxX,minY,maxY, vertexArray, faceArray,nor
            vertexArray.push(minX+deltaX*j);
            vertexArray.push(minY+deltaY*i);
            vertexArray.push(heightArray[j*(n+1)+i]);
+           //compute the per vertex avereged normals 
            var normal = computeVertexNormals(n, minX+deltaX*j, minY+deltaY*i, deltaX, deltaY, heightArray, i, j);
            
            normalArray.push(vec3.dot(normal, [1.0, 0.0, 0.0]));
@@ -140,6 +141,8 @@ function computeVertexNormals(size, x, y, deltax, deltay, heightArray, i, j)
 {
     var normalsum = vec3.create();
     var normal = vec3.create();        
+    
+    // for any vertex, there are at most 6 triangles that share that vertex. We compute the normals for each triangle seperately and add them together
     
     if(i != 0 && j != 0)
     {
