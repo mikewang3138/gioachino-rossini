@@ -58,7 +58,7 @@ function setupSphereBuffers() {
     
     var sphereSoup=[];
     var sphereNormals=[];
-    var numT=sphereFromSubdivision(6,sphereSoup,sphereNormals);
+    var numT=sphereFromSubdivision(4,sphereSoup,sphereNormals);
     console.log("Generated ", numT, " triangles"); 
     sphereVertexPositionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, sphereVertexPositionBuffer);      
