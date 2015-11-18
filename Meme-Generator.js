@@ -1,4 +1,4 @@
-var noun = ["asshole", "dick", "retard", "nigger", "Nick", "Gavin", "Ryze", "meme", "Cody", "Zac", "Steve", "level 5 Nunu", "fed Amumu", "fam", "Kyle"];
+var noun = ["asshole", "dick", "retard", "Nick", "Gavin", "Ryze", "meme", "Cody", "Zac", "Steve", "level 5 Nunu", "fed Amumu", "fam", "Kyle"];
 var adjective = ["savage", "retarded", "shitty", "GG", "fed", "OP"];
 var list = [];
 var list_num = 0;
