@@ -25,13 +25,14 @@ function startup(){
         }
     }
     if(isvalid){
+        sList = [];
+        sList = [];
         Champion = champID;
         var IDlist = [];
         var namelist = [];
         fetchMasteryIDs();
         GetListOfChallengers(IDlist, namelist);
         GetListOfGames(champID, namelist, IDlist);
-        createSelect();
     }
 
 }
@@ -98,7 +99,8 @@ function GetChampID(champname){
 }
 
 function GetListOfGames(champID, nameList, idlist){
-    matchListRequest(champID, nameList, idlist, 0, 100);
+    var max = parseInt(document.getElementById("nChallangers").value);
+    matchListRequest(champID, nameList, idlist, 0, max);
     
 }
 
@@ -107,7 +109,7 @@ function matchListRequest(champID, nameList, idlist, i, max){
     URL = "https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/"+idlist[i]+"?championIds="+champID+"&rankedQueues=RANKED_SOLO_5x5&seasons=PRESEASON2016&api_key=" + apikey;
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
-        document.getElementById("textbox").innerHTML = "loading " + (i+1) + "/100";
+        document.getElementById("textbox").innerHTML = "loading " + (i+1) + "/"+max;
         if(xhr.status == 200 && xhr.readyState == 4){
             console.log(i + " Summoner Checked: " + nameList[i]);
             var response = xhr.responseText;
@@ -117,9 +119,12 @@ function matchListRequest(champID, nameList, idlist, i, max){
                 sList.push(nameList[i]);
                 mList.push(matchIDs);
             }
-            if(i<max)
+            if(i<max-1){
                 sleep(1000);
                 matchListRequest(champID, nameList, idlist, i+1, max);
+            }
+            else
+                createSelect();
         }
         if(xhr.status == 429 && xhr.readyState == 4){
             console.log("Fetch rate limit exceeded checking: " + nameList[i]);
