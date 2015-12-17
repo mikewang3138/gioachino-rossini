@@ -166,6 +166,13 @@ function sleep(milliseconds) {
 
 function createSelect(){
     
+    var test = document.getElementById("summoner");
+    if(test != null){
+        test.parentNode.removeChild(test);
+        var rmbtn = document.getElementById("masterybutton");
+        rmbtn.parentNode.removeChild(rmbtn);
+    }
+    
     var select = document.createElement("SELECT");
     select.id = "summoner";
     document.body.appendChild(select);
@@ -176,13 +183,13 @@ function createSelect(){
         select.add(option);
     }
     var button = document.createElement("BUTTON");
+    button.id = "masterybutton";
     button.textContent = "Get Masteries";
     button.onclick = function() { 
         clearMasteryString();
         var summ = document.getElementById("summoner").value;
         console.log(summ);
         GetGameData();
-        writeTextbox(masteryString);
     }
     document.body.appendChild(button);
 }
@@ -191,18 +198,36 @@ function createSelect(){
 function GetGameData(){
     var summ = document.getElementById("summoner").value;
     var matchids = mList[summ];
-    console.log(matchids);
-    for(var i=0; i <matchids.length; i++){
-        sleep(1000);
-        var xhr = new XMLHttpRequest(); 
-        xhr.open("GET", "https://na.api.pvp.net/api/lol/na/v2.2/match/"+ matchids[i]+"?api_key=" + apikey, false);
-        xhr.send();
+    fetchGameData(matchids, 0);
+}
+
+function fetchGameData(matchids, i){
+    var URL = "https://na.api.pvp.net/api/lol/na/v2.2/match/"+ matchids[i]+"?api_key=" + apikey;
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.status == 200 && xhr.readyState == 4){
+            var response = xhr.responseText;
+            masteryString += "<br><b>Game " + (i+1) + "</b><br>";
+            findMasteries(response); 
+            writeTextbox(masteryString);
+            if(i<matchids.length-1){
+                sleep(1000);
+                fetchGameData(matchids, i+1);                
+            }
             
-        var response = xhr.responseText;
-        masteryString += "<br><b>Game " + i + "</b><br>";
-        findMasteries(response);
-       
-    }
+        }
+        if(xhr.status == 429 && xhr.readyState == 4){
+            console.log("Fetch rate limit exceeded");
+            console.log("Attempting to refetch");
+            sleep(5000);
+            fetchGameData(matchids, i);
+        }
+        
+        
+    };
+    xhr.open("GET", URL, "true");
+    xhr.send();
+    
 }
 
 
