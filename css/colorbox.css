@@ -1,0 +1,84 @@
+#cboxContent {
+  background: none;
+}
+#cboxTopLeft {
+  background:none;
+}
+#cboxTopRight {
+  background:none;
+}
+#cboxBottomLeft {
+  background:none;
+}
+#cboxBottomRight {
+  background:none;
+}
+#cboxMiddleLeft {
+  background:none;
+}
+#cboxMiddleRight {
+  background:none;
+}
+#cboxTopCenter {
+  background:none;
+}
+#cboxBottomCenter {
+  background:none;
+}
+#cboxCurrent {
+  left:47%;
+}
+#cboxContent {
+  margin: 40px 40px 60px;
+  overflow: visible;
+}
+#cboxLoadingOverlay {
+  background:none;
+}
+#cboxLoadingGraphic{
+  background:url(../img/loading.gif) no-repeat center center;
+}
+#cboxClose {
+  background: url('../img/close.png');
+  width: 36px;
+  height: 36px;
+  top: -40px;
+  float:left;
+}
+#cboxClose:hover {
+  background-position: 0;
+}
+#cboxPrevious{
+  position:absolute;
+  top:50%;
+  left:-40px;
+  margin-top:-32px;
+  background:url(../img/arrow_left.png) no-repeat center left;
+  width:28px;
+  height:65px;
+  text-indent:-9999px;
+  opacity: 0.7;
+  outline:none;
+}
+#cboxPrevious:hover{
+  background-position: center left;
+  opacity: 1;
+}
+#cboxNext{
+  position:absolute;
+  top:50%;
+  right: -40px;
+  left: inherit;
+  margin-top:-32px;
+  background:url(../img/arrow_right.png) no-repeat center right;
+  width:28px;
+  height:65px;
+  text-indent:-9999px;
+  opacity: 0.7;
+  outline:none;
+}
+#cboxNext:hover{
+  background-position: center right;
+  opacity: 1;
+}
+

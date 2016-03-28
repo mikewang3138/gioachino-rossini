@@ -1,0 +1,15 @@
+
+.lol-content-log-updated-unpublished,
+.lol-content-log-unpublished-by-scheduler,
+.lol-content-log-scheduling-failed,
+.lol-content-log-deleted {
+  color: #6F0000;
+  font-weight: bold;
+}
+
+.lol-content-log-created-published,
+.lol-content-log-updated-published,
+.lol-content-log-published-by-scheduler {
+  color: #015506;
+  font-weight: bold;
+}

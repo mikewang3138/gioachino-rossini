@@ -1,0 +1,888 @@
+/* line 1, ../scss/globals/_headers.scss */
+.content-border-content > .panel-pane > h2.pane-title {
+  margin-bottom: 0;
+}
+
+/* line 5, ../scss/globals/_headers.scss */
+.content-border-content h2:first-child {
+  margin-bottom: 0;
+}
+
+/*  provide a simple mechanism for content editors to apply a border and padding to images in their content. */
+/* line 2, ../scss/elements/_article.scss */
+.field-name-body img.padded-border {
+  border: 1px solid #666;
+  padding: 2px;
+  margin: 5px;
+}
+
+/* line 1, ../scss/elements/_breadcrumbs.scss */
+#breadcrumbs ol {
+  padding-top: 0;
+}
+
+/*  note that some of this code comes from the medium card scss, and is what we should use, but we have not yet adjusted the small card markup in the media section to use it */
+/* Ensures height of promo-card full-size images to prevent breaking layouts */
+/* line 6, ../scss/elements/_small-card.scss */
+.node-small-card,
+.small-card {
+  width: 300px;
+  height: auto;
+  overflow: hidden;
+}
+/* line 13, ../scss/elements/_small-card.scss */
+.node-small-card div.file img,
+.small-card div.file img {
+  width: 290px;
+  height: 163px;
+}
+/* line 19, ../scss/elements/_small-card.scss */
+.node-small-card .field-name-field-media-type,
+.small-card .field-name-field-media-type {
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* line 26, ../scss/elements/_small-card.scss */
+.small-card-content-meta .gs-container > * {
+  padding-top: 0px;
+}
+
+/* line 30, ../scss/elements/_small-card.scss */
+.view-frontpage-promos .content-border {
+  margin-top: 0px;
+}
+
+/* line 5, ../scss/elements/_medium-card.scss */
+.medium-card {
+  overflow: hidden;
+}
+
+/* line 9, ../scss/elements/_medium-card.scss */
+.medium-card-media img {
+  width: 290px;
+  height: 163px;
+}
+
+/* line 14, ../scss/elements/_medium-card.scss */
+.medium-card-content {
+  padding-bottom: 5px;
+}
+/* line 17, ../scss/elements/_medium-card.scss */
+.medium-card-content .medium-card-content-content {
+  height: 121px;
+}
+/* line 20, ../scss/elements/_medium-card.scss */
+.medium-card-content .medium-card-content-content h4 {
+  margin-bottom: 10px;
+}
+/* line 23, ../scss/elements/_medium-card.scss */
+.medium-card-content .medium-card-content-content h4 a {
+  text-decoration: none;
+}
+/* line 29, ../scss/elements/_medium-card.scss */
+.medium-card-content .field-name-field-body-small {
+  max-height: 4.2em;
+  overflow: hidden;
+}
+/* line 34, ../scss/elements/_medium-card.scss */
+.medium-card-content .field-name-field-category {
+  text-align: right;
+  white-space: nowrap;
+  float: right;
+}
+/* line 40, ../scss/elements/_medium-card.scss */
+.medium-card-content .icon-posted {
+  margin-left: -6px;
+  white-space: nowrap;
+}
+
+/* line 45, ../scss/elements/_medium-card.scss */
+.medium-card-content-meta .gs-container > * {
+  padding-top: 0px;
+}
+
+/* Ensures height of promo-card full-size images to prevent breaking layouts */
+/* line 50, ../scss/elements/_medium-card.scss */
+.node-medium-card {
+  width: 300px;
+  height: 350px;
+}
+
+/* line 54, ../scss/elements/_medium-card.scss */
+.view-frontpage-cards .content-border {
+  margin-top: 0px;
+}
+
+/* line 2, ../scss/elements/_news-recent.scss */
+.view-news-recent .node-teaser {
+  border-top: 1px solid #F9F9FA;
+  border-bottom: 1px solid #D1D3D4;
+}
+/* line 7, ../scss/elements/_news-recent.scss */
+.view-news-recent .node-teaser:first-child {
+  border-top: 0;
+}
+/* line 11, ../scss/elements/_news-recent.scss */
+.view-news-recent .node-teaser:last-child {
+  border-bottom: 0;
+}
+
+/*  move into lol-kit  */
+/* line 2, ../scss/elements/_frontpage-rotator.scss */
+.dark-background {
+  color: #FFFFFF;
+}
+/* line 5, ../scss/elements/_frontpage-rotator.scss */
+.dark-background a.btn-large-link:link, .dark-background a.btn-large-link:visited {
+  color: #FFFFFF;
+  border: none;
+}
+/* line 9, ../scss/elements/_frontpage-rotator.scss */
+.dark-background a.btn-large-link:hover, .dark-background a.btn-large-link:active {
+  color: #A6E3E3;
+}
+
+/* line 13, ../scss/elements/_frontpage-rotator.scss */
+.generic-wrapper {
+  position: relative;
+  width: 1000px;
+  margin: 0px auto;
+}
+
+/* line 18, ../scss/elements/_frontpage-rotator.scss */
+.gs-overflow {
+  overflow: visible;
+}
+
+/* line 21, ../scss/elements/_frontpage-rotator.scss */
+#header,
+#footer,
+.section-wrapper {
+  min-width: 1000px;
+}
+
+/* line 26, ../scss/elements/_frontpage-rotator.scss */
+.fluid-width-video-wrapper {
+  padding-top: 56.25% !important;
+}
+
+/*  since the rotator is position:absolute, we need a spacer to push down the page content */
+/* line 33, ../scss/elements/_frontpage-rotator.scss */
+.content-promo-spacer {
+  height: 340px;
+}
+
+/* line 37, ../scss/elements/_frontpage-rotator.scss */
+#content-promo {
+  position: relative;
+  width: 100%;
+  min-width: 1000px;
+  top: -272px;
+  height: 1080px;
+  margin-bottom: -832px;
+  overflow: hidden;
+}
+/* line 46, ../scss/elements/_frontpage-rotator.scss */
+#content-promo .content-promo-rotator {
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  height: 1080px;
+  z-index: 0;
+}
+/* line 53, ../scss/elements/_frontpage-rotator.scss */
+#content-promo .content-promo-state-container {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 500px;
+  height: 55px;
+  width: 1000px;
+  margin-left: -500px;
+}
+/* line 63, ../scss/elements/_frontpage-rotator.scss */
+#content-promo .content-promo-state-container .content-promo-progress {
+  display: block;
+  position: relative;
+  top: 22px;
+  z-index: 0;
+  width: 0px;
+  /* width is modified by the cycle transition */
+  height: 20px;
+  margin: 0 auto;
+  background: #ffc200;
+  -moz-border-radius: "20px 20px 0 0";
+  -webkit-border-radius: "20px";
+  border-radius: "20px 20px 0 0";
+  -moz-box-shadow: "0 -3px 4px 0px rgba(255, 220, 150, 0.3)";
+  -webkit-box-shadow: "0 -3px 4px 0px rgba(255, 220, 150, 0.3)";
+  box-shadow: "0 -3px 4px 0px rgba(255, 220, 150, 0.3)";
+}
+/* line 76, ../scss/elements/_frontpage-rotator.scss */
+#content-promo .content-promo-state-container .content-promo-pager {
+  position: absolute;
+  width: 200px;
+  display: block;
+  z-index: 5;
+  height: 40px;
+  text-align: right;
+  top: 0px;
+  right: 10px;
+}
+/* line 86, ../scss/elements/_frontpage-rotator.scss */
+#content-promo .content-promo-state-container .content-promo-pager span {
+  display: inline-block;
+  height: 38px;
+  width: 26px;
+  border-radius: 10px;
+  background: url(../css/resources/slider-bullets.png) -1px 0 no-repeat;
+  margin: 0;
+  position: relative;
+  top: -2px;
+}
+/* line 96, ../scss/elements/_frontpage-rotator.scss */
+#content-promo .content-promo-state-container .content-promo-pager span:hover {
+  background-position: -26px 0;
+}
+/* line 99, ../scss/elements/_frontpage-rotator.scss */
+#content-promo .content-promo-state-container .content-promo-pager span.cycle-pager-active,
+#content-promo .content-promo-state-container .content-promo-pager span.cycle-pager-active:hover {
+  background-position: -26px 0;
+}
+/* line 105, ../scss/elements/_frontpage-rotator.scss */
+#content-promo .content-promo-slide {
+  position: absolute;
+  width: 100%;
+  height: 1080px;
+  display: none;
+  left: 50%;
+  margin-left: -50%;
+}
+/* line 113, ../scss/elements/_frontpage-rotator.scss */
+#content-promo .content-promo-slide .promo-background {
+  position: absolute;
+  width: 100%;
+  min-width: 1000px;
+  height: 1080px;
+  background: transparent none 50% 0px no-repeat;
+  border: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  z-index: -1;
+}
+/* line 124, ../scss/elements/_frontpage-rotator.scss */
+#content-promo .content-promo-slide .promo-content {
+  position: relative;
+  top: 270px;
+  height: 240px;
+  z-index: 2;
+  padding: 0 30px;
+  margin: 0 auto;
+  width: 1000px;
+}
+/* line 133, ../scss/elements/_frontpage-rotator.scss */
+#content-promo .content-promo-slide .promo-content h2 {
+  font-size: 2.8em;
+  line-height: 1em;
+  background: transparent;
+  color: #ff9c00;
+  border: 0;
+  height: auto;
+  margin: 0 0 5px 0;
+  padding: 0;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+/* line 149, ../scss/elements/_frontpage-rotator.scss */
+#content-promo .content-promo-slide .promo-content h4 {
+  font-style: italic;
+  font-size: 1.5em;
+  margin: 0 0 20px 0;
+  color: #fbd989;
+}
+/* line 158, ../scss/elements/_frontpage-rotator.scss */
+#content-promo .content-promo-slide .promo-content .promo-links {
+  position: absolute;
+  bottom: 0px;
+}
+/* line 163, ../scss/elements/_frontpage-rotator.scss */
+#content-promo .content-promo-slide .promo-content .file-video iframe {
+  box-shadow: 0px -20px 15px -15px rgba(255, 156, 0, 0.1), 20px 0 15px -15px rgba(255, 156, 0, 0.1), 0px 20px 15px -15px rgba(255, 156, 0, 0.1), -20px 0 15px -15px rgba(255, 156, 0, 0.1);
+}
+/* line 171, ../scss/elements/_frontpage-rotator.scss */
+#content-promo .content-promo-slide .promo-content img {
+  max-width: 100%;
+  height: auto;
+}
+/* line 181, ../scss/elements/_frontpage-rotator.scss */
+#content-promo .content-promo:first-child {
+  display: block;
+}
+
+/*  position must not be relative because */
+/* line 188, ../scss/elements/_frontpage-rotator.scss */
+.p-romo-content .gs-container > * {
+  position: static;
+}
+
+/* line 2, ../scss/elements/_teaser.scss */
+.node-teaser .field-name-field-body-medium {
+  height: 112px;
+}
+/* line 5, ../scss/elements/_teaser.scss */
+.node-teaser .pane-time-ago-comment-count {
+  margin-left: -5px;
+}
+
+/*  ADMIN Theming  */
+/*  simple black background on the node edit pages. */
+/* line 25, ../scss/lolt.styles.scss */
+body.page-node-add,
+body.page-node-edit {
+  background: black;
+}
+
+/*  remove the LoL header and footer from the display since these aren't needed on the node edit pages. */
+/* line 30, ../scss/lolt.styles.scss */
+body.page-node-add #header,
+body.page-node-add #footer,
+body.page-node-edit #header,
+body.page-node-edit #footer {
+  display: none;
+}
+
+/* line 36, ../scss/lolt.styles.scss */
+body.page-node-add .pane-breadcrumb-title,
+body.page-node-edit .pane-breadcrumb-title {
+  padding-top: 20px;
+}
+
+/*  fix styling of the tags field so that tags that are added to a node are still easy to read/use/remove. */
+/* line 42, ../scss/lolt.styles.scss */
+body.page-node-add .node-form .field-name-field-tags div.at-term-list,
+body.page-node-edit .node-form .field-name-field-tags div.at-term-list {
+  display: block;
+}
+
+/*  Media browser modals on Node Editing forms */
+/*  Set size and position in percentages .. use !important to override the inline css set by the modal js library. */
+/* line 49, ../scss/lolt.styles.scss */
+body.page-node-add .ui-dialog.media-wrapper,
+body.page-node-edit .ui-dialog.media-wrapper {
+  height: 87% !important;
+  width: 94% !important;
+  top: 9% !important;
+  left: 3% !important;
+  display: block !important;
+  position: fixed !important;
+}
+
+/* line 58, ../scss/lolt.styles.scss */
+body.page-node-add .ui-dialog.media-wrapper iframe#mediaBrowser,
+body.page-node-edit .ui-dialog.media-wrapper iframe#mediaBrowser {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+/* line 63, ../scss/lolt.styles.scss */
+body.page-node-add #website-feedback,
+body.page-node-edit #website-feedback {
+  display: none;
+}
+
+/*  Apply admin button styling to link type button on the node eit form  */
+/* line 69, ../scss/lolt.styles.scss */
+body.page-node-add .node-form .button,
+body.page-node-edit .node-form .button {
+  box-sizing: border-box;
+  color: black;
+  cursor: default;
+  display: inline-block;
+  font-family: 'Lucida Grande';
+  font-size: 11px;
+  height: 18px;
+  border: 1px solid silver;
+  letter-spacing: normal;
+  line-height: normal;
+  margin: 0px 10px;
+  padding: 0px 8px;
+  text-align: center;
+  text-indent: 0px;
+  text-shadow: none;
+  white-space: pre;
+  background-color: #eeeeee;
+  border-radius: 3px;
+  text-decoration: none;
+  -webkit-appearance: push-button;
+  -moz-appearance: push-button;
+  appearance: push-button;
+}
+
+/* line 95, ../scss/lolt.styles.scss */
+.node-unpublished {
+  background: transparent;
+}
+
+/* line 99, ../scss/lolt.styles.scss */
+#admin-menu {
+  top: -19px;
+}
+
+/* line 102, ../scss/lolt.styles.scss */
+.riotbar-present #admin-menu {
+  top: 0;
+  z-index: 9;
+}
+
+/* line 107, ../scss/lolt.styles.scss */
+html body {
+  min-width: 1000px;
+}
+
+/* line 110, ../scss/lolt.styles.scss */
+html body.admin-menu.riotbar-present {
+  margin-top: 40px !important;
+}
+
+/* line 114, ../scss/lolt.styles.scss */
+.pane-lolbar-navigation {
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* line 120, ../scss/lolt.styles.scss */
+.front .pane-lolbar-navigation {
+  padding: 45px 0;
+}
+
+/* line 123, ../scss/lolt.styles.scss */
+.not-front .pane-lolbar-navigation {
+  height: auto;
+  padding: 15px 0;
+}
+
+/* line 128, ../scss/lolt.styles.scss */
+#header-riotbar {
+  background: url(../img/lol_logo.png) center center no-repeat;
+  background-size: contain;
+  width: 225px;
+  height: 85px;
+  z-index: 10;
+  margin-left: 20px;
+  display: block;
+  text-decoration: none;
+  outline: none;
+}
+
+/* line 140, ../scss/lolt.styles.scss */
+a.tabledrag-handle .handle {
+  background: url("/misc/draggable.png") no-repeat scroll 6px 9px transparent;
+  height: 24px;
+  margin: -2px 0 0 14px;
+  padding: 0;
+  width: 23px;
+}
+
+/* line 147, ../scss/lolt.styles.scss */
+table.tabledrag-processed {
+  width: 100%;
+}
+
+/*  changes for lolkit */
+/* line 151, ../scss/lolt.styles.scss */
+h4 {
+  font-size: 1.35em;
+}
+
+/* line 154, ../scss/lolt.styles.scss */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* line 160, ../scss/lolt.styles.scss */
+h1.article-title {
+  font-size: 2em;
+  line-height: 1.1em;
+  margin-bottom: 0px;
+}
+
+/* line 166, ../scss/lolt.styles.scss */
+.article_detail {
+  display: block;
+  margin: 0em 0 1em;
+}
+
+/* line 171, ../scss/lolt.styles.scss */
+.posted_by {
+  text-transform: uppercase;
+  color: #555555;
+  font-size: 0.75em;
+}
+
+/* line 177, ../scss/lolt.styles.scss */
+.pager {
+  text-align: right;
+  margin-top: 10px;
+}
+
+/* line 181, ../scss/lolt.styles.scss */
+.pager-offset {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+/* line 186, ../scss/lolt.styles.scss */
+.pager-offset .pager {
+  position: absolute;
+  bottom: -40px;
+  right: 0px;
+}
+
+/*  force grid items to be position static so that a parent container can be the relative parent for absolute positioned elements */
+/* line 193, ../scss/lolt.styles.scss */
+.gs-static > * {
+  position: static;
+}
+
+/* line 197, ../scss/lolt.styles.scss */
+.field-name-body a.region-na,
+.field-name-body a.region-euw,
+.field-name-body a.region-eune {
+  display: none;
+}
+
+/* line 205, ../scss/lolt.styles.scss */
+.sidebar-navigation ul.menu {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Adobe Garamond Pro", Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+  /* i18n-fonts : headings font */
+}
+/* line 211, ../scss/lolt.styles.scss */
+.i18n-cs .sidebar-navigation ul.menu, .i18n-el .sidebar-navigation ul.menu, .i18n-tr .sidebar-navigation ul.menu, .i18n-pl .sidebar-navigation ul.menu, .i18n-pt .sidebar-navigation ul.menu, .i18n-tr .sidebar-navigation ul.menu, .i18n-ro .sidebar-navigation ul.menu, .i18n-ru .sidebar-navigation ul.menu {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+/* line 222, ../scss/lolt.styles.scss */
+.sidebar-navigation ul.menu li {
+  list-style-image: none;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+  font-size: 1.4em;
+  /*  last link is a view all link and should be distinctly styled  */
+}
+/* line 229, ../scss/lolt.styles.scss */
+.sidebar-navigation ul.menu li a {
+  text-transform: uppercase;
+  text-decoration: none;
+}
+/* line 233, ../scss/lolt.styles.scss */
+.sidebar-navigation ul.menu li li {
+  font-size: .675em;
+  margin-bottom: 0px;
+  text-transform: none;
+}
+/* line 238, ../scss/lolt.styles.scss */
+.sidebar-navigation ul.menu li li a {
+  text-transform: none;
+}
+/* line 242, ../scss/lolt.styles.scss */
+.sidebar-navigation ul.menu li li.first {
+  margin-top: 10px;
+}
+/* line 246, ../scss/lolt.styles.scss */
+.sidebar-navigation ul.menu li li.last {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 0.5em;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+/* line 256, ../scss/lolt.styles.scss */
+.sidebar-navigation .subtle-divider {
+  margin: 20px 0;
+}
+
+/* line 261, ../scss/lolt.styles.scss */
+h2.black-bar-header,
+.black-bar-header h2,
+#mini-panel-lol_media_browser_featured_media h2 {
+  background: black url("http://cdn.leagueoflegends.com/lolkit/1.0.12/resources/images/lol-textures.jpg") no-repeat 0 -6px;
+  padding: 17px 20px 11px 20px;
+  margin: 0px 0 0 0;
+  -webkit-box-shadow: 0px 1px 2px #323232;
+  -moz-box-shadow: 0px 1px 2px #323232;
+  box-shadow: 0px 1px 2px #323232;
+  color: #DFE1E1;
+  position: relative;
+}
+
+/* line 273, ../scss/lolt.styles.scss */
+h2.black-bar-header:before,
+.black-bar-header h2:before,
+#mini-panel-lol_media_browser_featured_media h2:before {
+  content: "";
+  display: block;
+  height: 2px;
+  background: black url("http://cdn.leagueoflegends.com/lolkit/1.0.12/resources/images/lol-textures.jpg") no-repeat center -1px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+/* line 287, ../scss/lolt.styles.scss */
+.black-bar-header h2,
+#mini-panel-lol_media_browser_featured_media h2 {
+  margin-bottom: 20px;
+}
+
+/* line 293, ../scss/lolt.styles.scss */
+.node-teaser .field-name-field-body-medium {
+  max-height: 7.5em;
+  overflow: hidden;
+}
+
+/* line 297, ../scss/lolt.styles.scss */
+.node-article.node-teaser .teaser-content {
+  height: 110px;
+  margin-top: 10px;
+}
+
+/* line 301, ../scss/lolt.styles.scss */
+.node-teaser .field-name-field-article-media img {
+  width: 281px;
+  height: 158px;
+}
+
+/*  Related News listing block  */
+/* line 307, ../scss/lolt.styles.scss */
+.view-id-news_small_listing .node-small-listing {
+  margin: 10px 0;
+}
+
+/* line 311, ../scss/lolt.styles.scss */
+.media-tertiary .node-small-card .panel-separator,
+.media-tertiary .node-small-card .gs-container {
+  display: none;
+}
+
+/*  temp fix for wrapper problem on small card grid view. This creates spacing issues, but ensures that the */
+/* line 317, ../scss/lolt.styles.scss */
+.view-lol-media-browser-browse .node-small-card h4 {
+  height: 2.1em;
+  overflow: hidden;
+}
+
+/* line 321, ../scss/lolt.styles.scss */
+.view-lol-media-browser-browse .node-small-card .gs-container > * {
+  padding-top: 0px;
+}
+
+/* line 324, ../scss/lolt.styles.scss */
+.view-lol-media-browser-browse .node-art.node-small-card .gs-container {
+  margin-top: 0px;
+}
+
+/* line 328, ../scss/lolt.styles.scss */
+a.lol-core-file-formatter {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+/* line 333, ../scss/lolt.styles.scss */
+.file-type-icon {
+  position: absolute;
+  display: block;
+  bottom: 5px;
+  right: 5px;
+  width: 24px;
+  height: 23px;
+  border-radius: 2px;
+}
+
+/* line 342, ../scss/lolt.styles.scss */
+.file-type-icon-video {
+  background: #d0d1d3 url(resources/lol-icons.png) no-repeat -3px -260px;
+  box-shadow: 1px 1px 3px #222;
+}
+
+/* line 348, ../scss/lolt.styles.scss */
+.time-ago,
+.field-name-field-category a,
+.field-name-field-category a:visited,
+.field-name-field-media-type a,
+.field-name-field-media-type a:visited {
+  color: #888888;
+}
+
+/*  remove the default backdrop from the homepage   */
+/* line 357, ../scss/lolt.styles.scss */
+.backdrop {
+  background: url("../img/lol_news_new_bg.jpg") top center no-repeat;
+}
+
+/* line 360, ../scss/lolt.styles.scss */
+body.page-home .backdrop {
+  background-image: none;
+}
+
+/*  position the default drupal admin tabs in a place that they are easy to use and do not disrupt the design of the page. */
+/* line 365, ../scss/lolt.styles.scss */
+.tabs ul.primary {
+  position: fixed;
+  left: 0px;
+  top: 250px;
+  z-index: 100;
+  margin: 0px;
+  padding: 0px;
+}
+/* line 373, ../scss/lolt.styles.scss */
+.tabs ul.primary li a {
+  text-decoration: none;
+  display: block;
+  width: 120px;
+  margin: 0;
+  padding: 5px 5px 5px 10px;
+  background-color: #DDD;
+  white-space: normal;
+  font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+  font-size: 10px;
+}
+/* line 384, ../scss/lolt.styles.scss */
+.tabs ul.primary li a:hover {
+  background-color: #EEE;
+}
+/* line 388, ../scss/lolt.styles.scss */
+.tabs ul.primary li.active a,
+.tabs ul.primary li.active a:hover {
+  background-color: #FFF;
+}
+
+/*  better looking error styling  */
+/* line 395, ../scss/lolt.styles.scss */
+div.error, table tr.error {
+  color: #fef5f1;
+  background-color: #8c2e0b;
+}
+
+/* custom error styling for chossen module */
+/* line 401, ../scss/lolt.styles.scss */
+div.error .chosen-drop {
+  color: #8c2e0b;
+}
+
+/*  styles the homepage news links   */
+/* line 406, ../scss/lolt.styles.scss */
+.view-news-recent {
+  position: relative;
+}
+
+/* line 409, ../scss/lolt.styles.scss */
+.view-news-recent .view-footer a.header-links {
+  position: absolute;
+  top: -57px;
+  right: 20px;
+  border-width: 0 1px;
+  display: block;
+  color: #bbbbbb;
+  text-decoration: none;
+  line-height: 37px;
+  padding: 12px 15px 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* line 423, ../scss/lolt.styles.scss */
+.view-news-recent .view-footer a.header-links:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/*  style the contents of the interstitial overlay  */
+/* line 429, ../scss/lolt.styles.scss */
+#colorbox.beta-interstitial-colorbox {
+  background: transparent none;
+  border-radius: 0px;
+  box-shadow: none;
+  outline: none;
+}
+
+/* line 435, ../scss/lolt.styles.scss */
+.beta-interstitial-colorbox #cboxBottomRight,
+.beta-interstitial-colorbox #cboxBottomLeft,
+.beta-interstitial-colorbox #cboxBottomCenter,
+.beta-interstitial-colorbox #cboxMiddleLeft,
+.beta-interstitial-colorbox #cboxMiddleRight,
+.beta-interstitial-colorbox #cboxTopRight,
+.beta-interstitial-colorbox #cboxTopLeft,
+.beta-interstitial-colorbox #cboxTopCenter {
+  display: none !important;
+}
+
+/* line 445, ../scss/lolt.styles.scss */
+.beta-interstitial-colorbox #cboxLoadedContent,
+.beta-interstitial-colorbox #cboxContent {
+  margin: 0px !important;
+}
+
+/* line 449, ../scss/lolt.styles.scss */
+.beta-interstitial-colorbox #cboxTitle {
+  height: 0px;
+  padding: 0px;
+}
+
+/* line 453, ../scss/lolt.styles.scss */
+.beta-interstitial-colorbox #cboxClose {
+  border: none;
+  top: 0px;
+  right: 0px;
+  display: none;
+}
+
+/* line 459, ../scss/lolt.styles.scss */
+#mini-panel-lol_sneak_peek_prestitial_overlay {
+  background-color: #FFF;
+}
+
+/* line 462, ../scss/lolt.styles.scss */
+html body.page-sneak-peek-overlay {
+  background-color: #FFF;
+  margin: 0px !important;
+}
+
+/* line 466, ../scss/lolt.styles.scss */
+.beta-prestitial > div {
+  width: 740px;
+  height: 330px;
+  padding: 40px 50px;
+  text-align: center;
+  background-color: #EEEEEE;
+}
+
+/* line 473, ../scss/lolt.styles.scss */
+.beta-prestitial .close-interstitial {
+  margin-top: 20px;
+}
+
+/* line 476, ../scss/lolt.styles.scss */
+.beta-prestitial .featured {
+  text-align: left;
+}
+
+/*  SHAME: These cures are here because drupal is inserting some css into the page which sets the width to 99%, which causes rendering problems. */
+/* line 481, ../scss/lolt.styles.scss */
+.panels-flexible-column-new-main,
+.panels-flexible-region-new-center {
+  width: 100% !important;
+}
