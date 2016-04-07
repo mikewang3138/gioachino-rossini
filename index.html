@@ -12,6 +12,27 @@
   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
   xmlns:owl="http://www.w3.org/2002/07/owl#">
 <head profile="http://www.w3.org/1999/xhtml/vocab">
+    <script id="shader-vs" type="x-shader/x-vertex">
+   attribute vec3 aVertexPosition;
+   attribute vec4 aVertexColor;
+
+    uniform mat4 uMVMatrix;
+    uniform mat4 uPMatrix;
+    varying vec4 vColor;
+
+    void main(void) {
+        gl_Position = uPMatrix*uMVMatrix*vec4(aVertexPosition, 1.0);
+        vColor = aVertexColor;
+    }
+</script><script id="shader-fs" type="x-shader/x-fragment">
+precision mediump float;
+varying vec4 vColor;
+void main(void) {
+        gl_FragColor = vColor;
+ }
+</script>
+  <script src="./Particle Simulation/gl-matrix-min.js"></script><script type="text/javascript" src="./Particle Simulation/webgl-utils.js"></script><script src="./Particle Simulation/ParticleSimulation-Free.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <!--[if lt IE 9]>
@@ -63,7 +84,7 @@
 </style>
   <script type="text/javascript" src="scripts/modernizr.js"></script>
 </head>
-<body class="html not-front not-logged-in no-sidebars page-node page-node- page-node-46338 node-type-page i18n-en riot-realm-na i18n-en-US" >
+<body class="html not-front not-logged-in no-sidebars page-node page-node- page-node-46338 node-type-page i18n-en riot-realm-na i18n-en-US" onload = "startup();">
   <!-- Google Tag Manager -->
   <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N98J"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -155,14 +176,18 @@
 					        <div class="slide">
 				                <div>
 				                	<div class="video-border"></div>
-									<video class="video-js vjs-default-skin" controls="" preload="none" width="640" height="355" poster="http://news.cdn.leagueoflegends.com/public/images/pages/2016/january/jhin/video/Jhin_P.jpg"><source src="http://news.cdn.leagueoflegends.com/public/images/pages/2016/january/jhin/video/Jhin_P.webm" type="video/webm"><source src="http://news.cdn.leagueoflegends.com/public/images/pages/2016/january/jhin/video/Jhin_P.mp4" type="video/mp4"><source src="http://news.cdn.leagueoflegends.com/public/images/pages/2016/january/jhin/video/Jhin_P.ogv" type="video/ogg"></source></source></source></video></div>
+                                    <canvas id="myGLCanvas" width="640" height="355" onmousedown="handledown(event)" onmouseup="handleup(event)"></canvas></div>
 				                <div class="abilities">
 				                    <h2>
 				                    	Passive: Intuitive Comprehension
 				                    </h2>
 				                    <p>
-			                           	Kyle is always on the lookout for new skills to add to his repertoire. His ability to quickly understand problems and adjust to situations makes him invaluable in any design team. 
-                                    </p>              
+			                           	Kyle is always on the lookout for new skills to add to his repertoire. His ability to quickly understand problems and adjust to situations makes him invaluable in any design team.  
+                                    </p>         
+                                    <p>
+                                        Click in the box above to create masses! Click and hold to make bigger massses! Click and drag to give the masses an initial velocity! These Masses intereact with each other gravitationally. I made this simulation when I was learning javascript and thought it was a great demonstration how I take new things that I am learning (javascript) and incorporate it to everything I already know (physics)! Click the box below to reset the simulation (or if the page is running slow because of it)
+                                    </p>
+                                    <button type=button onclick="reset();">reset</button>
 				                </div>
 					        </div>
 					        <div class="slide">
@@ -207,7 +232,7 @@
 					        <div class="slide">
 				               <div>			
 				                	<div class="video-border"></div>        	
-									<video class="video-js vjs-default-skin" controls="" preload="none" width="640" height="355" poster="http://news.cdn.leagueoflegends.com/public/images/pages/2016/january/jhin/video/Jhin_R.jpg"><source src="http://news.cdn.leagueoflegends.com/public/images/pages/2016/january/jhin/video/Jhin_R.webm" type="video/webm"><source src="http://news.cdn.leagueoflegends.com/public/images/pages/2016/january/jhin/video/Jhin_R.mp4" type="video/mp4"><source src="http://news.cdn.leagueoflegends.com/public/images/pages/2016/january/jhin/video/Jhin_R.ogv" type="video/ogg"></source></source></source></video></div>
+									<video class="video-js vjs-default-skin" controls="" preload="none" width="640" height="355" poster="images/Pointer_Poster.jpg"><source src="images/Pointer_Game.mp4" type="video/mp4"></source></video></div>
 				                <div class="abilities">
 				                    <h2>
 				                    	 R: Syntax Error
@@ -215,6 +240,9 @@
 				                    <p>
 				                    	Kyle is adept with a variety of programming languages, most notably C++ and Java, and has a deep understanding of what makes object-oriented programming a powerful tool.
 				                    </p>
+                                    <p>
+                                        Above is a simple game that I wrote in Java. It's not quite as complex as League, but everyone has to start somewhere!
+                                    </p>
 				                </div>
 				            </div>
 				    	</div>
