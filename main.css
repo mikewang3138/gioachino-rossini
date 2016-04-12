@@ -442,10 +442,10 @@ h2.abl-header {
 }
 
 .butterfly {
-    background: transparent url('http://news.cdn.leagueoflegends.com/public/images/pages/2016/january/jhin/img/butterfly.png') top center no-repeat;
-    width: 567px;
-    height: 540px;
-    margin-left: -230px;
+    background: transparent url('images/poro.png') top center no-repeat;
+    width: 284px;
+    height: 270px;
+    margin-left: 0px;
     position: relative;
     z-index:2;
 }

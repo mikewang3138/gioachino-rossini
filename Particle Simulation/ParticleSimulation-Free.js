@@ -288,8 +288,6 @@ function handledown(event){
         mousey = event.pageY - $('#myGLCanvas').offset().top;
         poslist[num_particles*2] = mousex;
         poslist[(num_particles*2)+1] = gl.viewportHeight-mousey;
-        console.log("x: " + mousex);
-        console.log("y: " + mousey);
         clicktimer = 0;
         readydown = false;
     }
@@ -301,7 +299,6 @@ function handleup(event){
         mousey = event.pageY - $('#myGLCanvas').offset().top;
         vellist[num_particles*2] = (mousex - poslist[(num_particles)*2])/100;
         vellist[(num_particles*2)+1] = ((gl.viewportHeight-mousey) - poslist[((num_particles)*2)+1])/100;
-        console.log("velocity x: " + vellist[num_particles*2] + "velocity y: "+ vellist[(num_particles*2)+1]);
         masslist[num_particles] = clicktimer/2;
         num_particles++;
         readydown = true;
