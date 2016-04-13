@@ -306,12 +306,12 @@ blockquote.blockquote:after {
 }
 
 .flower {
-    background: transparent url('http://news.cdn.leagueoflegends.com/public/images/pages/2016/january/jhin/img/flower.png') top center no-repeat;
-    width: 658px;
-    height: 702px;
+    background: transparent url('images/League_Character.png') top center no-repeat;
+    width: 300px;
+    height: 475px;
     position: absolute;
-	margin-left: 290px;
-    margin-top: -270px;
+	margin-left: 380px;
+    margin-top: -185px;
     z-index:1;
 }
 
